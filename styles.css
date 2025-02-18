@@ -264,9 +264,33 @@ small {
 /*******************
 		HEADER
 *************************/
+/* Particles Background */
+#particles-js {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: -1; /* Ensure it stays behind other content */
+	background: #1a1a1a; /* Dark background color */
+}
+
+/* Ensure content is above the particles */
+main, .footer {
+	position: relative;
+	z-index: 1;
+}
+
+/* Navbar */
+
+
 .nav {
 	width: 100%;
 	padding: 0 1rem;
+	position: fixed;
+	z-index: 1000;
+	top:-0.7rem;
+	
 }
 
 .nav .container {
@@ -335,8 +359,10 @@ small {
 /*******************
 		HERO SECTION
 *************************/
+/* Hero Section */
 .hero {
 	padding: 0 1rem;
+	z-index: -11;
 }
 
 .hero .container {
@@ -359,6 +385,7 @@ small {
 
 .intro {
 	color: var(--other-clr);
+	line-height: 1.6; /* Improve readability */
 }
 
 .hero img {
@@ -370,22 +397,33 @@ small {
 }
 
 .hero-btn-container {
-	margin-block-start: 5rem;
+	margin-block-start: 3rem; /* Reduced margin for better spacing */
 	display: flex;
-	/* align-items: center; */
+	gap: 1.5rem; /* Space between buttons */
+	align-items: center; /* Align buttons vertically */
 }
 
-.hire-btn {
+/* Common Button Styles */
+.btn {
 	text-transform: uppercase;
 	letter-spacing: 1px;
 	display: inline-block;
-	border: 1px solid var(--accent-clr);
-	color: var(--accent-clr);
+	padding: 0.75rem 1.5rem; /* Consistent padding */
+	border: 1px solid transparent; /* Default border */
+	color: white;
 	transition: all 300ms cubic-bezier(0.25, 0.32, 0.85, 0.58);
 	z-index: 1;
 	position: relative;
 	font-size: inherit;
 	overflow: hidden;
+	text-decoration: none; /* Remove underline */
+	border-radius: 50px; /* Rounded corners */
+}
+
+/* Hire Me Button */
+.hire-btn {
+	border: 1px solid var(--accent-clr);
+	color: var(--accent-clr);
 }
 
 .hire-btn::before {
@@ -413,17 +451,16 @@ small {
 	transform: translate3d(50%, -50%, 0) scale3d(15, 15, 15);
 }
 
-.download-link {
-	color: var(--other-clr);
-	transition: color 0.45s ease-in-out;
+/* Download Resume Button */
+.download-btn {
+	background: var(--accent-clr); /* Use --other-clr for the button */
+	color: black;
 }
 
-.download-link:hover {
-	color: #fff;
-}
-
-.download-link:focus {
-	outline: none;
+.download-btn:hover {
+	background: var(--other-clr); /* Change to accent color on hover */
+	transform: translateY(-2px); /* Add a slight lift effect */
+	box-shadow: 0 5px 15px rgba(181, 178, 192, 0.3); /* Add shadow on hover */
 }
 
 /*******************
@@ -642,26 +679,89 @@ small {
 /*******************
 		CONTACT SECTION
 *************************/
+/* Contact Section */
 .contact {
+	top: 8.4rem;
 	margin-block-start: var(--section-mt);
 	padding: 4rem 1rem;
+	background: var(--secondary-clr); /* Match footer background */
+	color: white;
+	text-align: center;
+	border-radius: 0; /* Remove rounded corners for seamless blending */
+	box-shadow: none; /* Remove shadow for a flat design */
+	overflow: hidden;
+	position: relative;
 }
 
+.contact::before {
+	content: '';
+	position: absolute;
+	top: -50%;
+	left: -50%;
+	width: 200%;
+	height: 200%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent); /* Subtle radial gradient */
+	transform: rotate(45deg);
+	animation: rotateGradient 70s linear infinite;
+}
+
+@keyframes rotateGradient {
+	0% {
+		transform: rotate(0deg);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+.contact .subtitle {
+	font-size: 1.25rem;
+	color: rgba(255, 255, 255, 0.8); /* Lighter text for contrast */
+	margin-bottom: 0.5rem;
+}
+
+.contact .title {
+	font-size: 2.5rem;
+	margin-bottom: 1rem;
+	color: var(--accent-clr); /* Accent color for the title */
+}
+
+
 .mail-link {
-	display: flex;
-	margin-block-start: var(--section-mt);
-	width: max-content;
-	transition: var(--transition-clr);
-	position: relative;
+	display: inline-flex;
+	align-items: center;
+	padding: 0.75rem 1.5rem;
+	background: var(--accent-clr); /* Accent color for the button */
+	color:rgba(27, 24, 24, 0.7); ;
+	border-radius: 50px;
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	font-weight: bold;
+	transition: var(--transition-clr);
+	position: relative;
+	overflow: hidden;
+}
+
+.mail-link::after {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 300%;
+	height: 300%;
+	background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent); /* Subtle hover effect */
+	transform: translate(-50%, -50%) scale(0);
+	transition: transform 0.5s ease;
+}
+
+.mail-link:hover::after {
+	transform: translate(-50%, -50%) scale(1);
 }
 
 .mail-link:hover {
-	color: var(--accent-clr);
-	text-decoration: none;
+	background: var(--other-clr); /* Use --other-clr for hover, matching footer's em color */
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Darker shadow on hover */
 }
-
 /*******************
 		FOOTER
 *************************/
@@ -783,6 +883,7 @@ small {
 	.hero-btn-container {
 		justify-content: center;
 	}
+	
 
 	/* hamburger menu */
 	.hamburger {
