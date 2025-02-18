@@ -857,12 +857,18 @@ main, .footer {
 	.nav-list {
 		flex-direction: column;
 		position: absolute;
-		top: 250px;
-		left: 50%;
-		transform: translate(-50%);
+		top: 0;
+		left: 0;
+		width: 100vw;
 		height: 100vh;
+		background: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+		backdrop-filter: blur(18px); /* Frosted glass effect */
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		opacity: 0;
 		pointer-events: none;
+		transition: opacity 300ms ease-in-out, background 300ms ease-in-out;
 	}
 
 	.social-nav {
@@ -877,6 +883,7 @@ main, .footer {
 	.nav-list.open,
 	.social-nav.open {
 		opacity: 1;
+		
 		pointer-events: all;
 	}
 
@@ -936,6 +943,7 @@ main, .footer {
 		height: 60vh;
 		text-align: center;
 		position: relative;
+		z-index: 1;
 	}
 
 	.hero img {
