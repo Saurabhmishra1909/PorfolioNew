@@ -523,6 +523,27 @@ main, .footer {
 	padding: 4rem 1rem;
 }
 
+.typewriter {
+	font-size: 46px;
+    font-family: monospace;
+    border-right: 2px solid black;
+    padding-right: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
+}
+
+.cursor-blink {
+    animation: blink 0.7s step-end infinite;
+}
+
+
+
 .projects {
 	padding-block-start: 5rem;
 	display: flex;
