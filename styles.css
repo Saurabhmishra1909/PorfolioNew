@@ -365,6 +365,28 @@ main, .footer {
 	z-index: -11;
 }
 
+
+.typewriter { 
+    font-family: monospace;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid black; /* Cursor */
+}
+
+.typewriter span {
+    display: inline-block; /* Ensure each letter is treated as a block */
+}
+
+.cursor-blink {
+    animation: blink 0.7s steps(2, start) infinite;
+}
+
+@keyframes blink {
+    to {
+        border-right-color: transparent; /* Blinking effect */
+    }
+}
+
 .hero .container {
 	margin-block-start: var(--section-mt);
 	display: grid;
@@ -389,7 +411,32 @@ main, .footer {
 }
 
 .hero img {
-	max-width: 375px;
+	margin-top: 2rem; /* Add space between text and image */
+    max-width: 450px; /* Limit the maximum width */
+    width: 100%; /* Make it responsive */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 90%; /* Make the image circular */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    box-shadow: 0 0 20px rgba(196, 208, 34, 0.8), 0 0 30px rgba(213, 213, 27, 0.6), 0 0 40px rgba(255, 255, 255, 0.4); /* Glowing border effect */
+}
+    animation: float 3s ease-in-out infinite; /* Add a floating animation */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+}
+
+/* Floating animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0); /* Start and end at the same position */
+    }
+    50% {
+        transform: translateY(-10px); /* Move up slightly */
+    }
+}
+
+/* Hover effects */
+.hero img:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5); /* Enhance shadow on hover */
 }
 
 .hero .code {
@@ -484,10 +531,10 @@ main, .footer {
 	align-self: end;
 	justify-self: end;
 	width: 425px;
-	box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.006),
-		0px 0px 5.3px rgba(0, 0, 0, 0.008), 0px 0px 10px rgba(0, 0, 0, 0.01),
-		0px 0px 17.9px rgba(0, 0, 0, 0.012), 0px 0px 33.4px rgba(0, 0, 0, 0.014),
-		0px 0px 80px rgba(0, 0, 0, 0.02);
+	border-radius: 10%;
+	box-shadow: 0 0 20px rgba(46, 44, 44, 0.8), 0 0 30px rgba(51, 46, 46, 0.6), 0 0 40px rgba(255, 255, 255, 0.4); /* Glowing border effect */
+    border-color: rgba(47, 44, 44, 0.8); /* Optional: Lighten the border color on hover */
+}
 	/* filter: brightness(0.8); */
 }
 
@@ -562,7 +609,8 @@ main, .footer {
 	transition: opactiy 300ms ease-in-out;
 	position: relative;
 	display: inline-block;
-	height: 100%;
+	/* height: 100%; */
+	border-radius: 0.5rem;
 }
 
 .project-img:hover {

@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const navList = document.querySelector(".nav-list");
     const socials = document.querySelector(".social-nav");
     const navLinks = document.querySelectorAll(".nav-links");
+	
 
     if (hamburger && navList && socials) {
         const toggleMobileMenu = () => {
@@ -35,50 +36,77 @@ document.addEventListener("DOMContentLoaded", function () {
         AOS.init();
     }
 
-    // ✅ Typing Effect for Project Titles
-	const typewriterElements = document.querySelectorAll(".typewriter");
+    // ✅ Typing Effect for Project Titles with Colorful Letters
+    const typewriterElements = document.querySelectorAll(".typewriter");
 
-	typewriterElements.forEach((element) => {
-		const texts = element.getAttribute("data-texts").split(","); // Array of texts
-		let textIndex = 0; // Index of the current text
-		let index = 0; // Index of the current character
-		let isDeleting = false;
-	
-		const type = () => {
-			const currentText = element.textContent;
-	
-			if (!isDeleting) {
-				// Typing phase
-				if (index < texts[textIndex].length) {
-					element.textContent += texts[textIndex].charAt(index);
-					index++;
-					setTimeout(type, 120); // Typing speed
-				} else {
-					// Switch to backspacing after a delay
-					setTimeout(() => {
-						isDeleting = true;
-						type();
-					}, 1000); // Delay before backspacing starts
-				}
-			} else {
-				// Backspacing phase
-				if (currentText.length > 0) {
-					element.textContent = currentText.slice(0, -1); // Remove last character
-					setTimeout(type, 60); // Backspacing speed (faster than typing)
-				} else {
-					// Move to the next text
-					isDeleting = false;
-					index = 0;
-					textIndex = (textIndex + 1) % texts.length; // Cycle through texts
-	
-					// Delay before typing the next text
-					setTimeout(() => {
-						type();
-					}, 500); // Delay before typing the next text
-				}
-			}
-		};
-	
-		setTimeout(type, 500); // Initial delay before typing starts
-	});
+    typewriterElements.forEach((element) => {
+        const texts = element.getAttribute("data-texts")?.split(",") || []; // Array of texts
+        if (texts.length === 0) return; // Exit if no texts are provided
+
+        let textIndex = 0; // Index of the current text
+        let index = 0; // Index of the current character
+        let isDeleting = false;
+
+        // Function to generate a random color
+        const getRandomColor = () => {
+            const letters = "0123456789ABCDEF";
+            let color = "#";
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 22)];
+            }
+            return color;
+        };
+
+        const type = () => {
+            const currentText = element.textContent;
+
+            if (!isDeleting) {
+                // Typing phase
+                if (index < texts[textIndex].length) {
+                    const letter = texts[textIndex].charAt(index);
+                    const span = document.createElement("span");
+
+                    // Handle spaces by replacing them with a non-breaking space
+                    if (letter === " ") {
+                        span.innerHTML = "&nbsp;"; // Use innerHTML for non-breaking space
+                    } else {
+                        span.textContent = letter;
+                    }
+
+                    span.style.color = getRandomColor(); // Assign a random color
+                    element.appendChild(span); // Append the colored letter
+                    index++;
+                    setTimeout(type, 120); // Typing speed
+                } else {
+                    // Switch to backspacing after a delay
+                    setTimeout(() => {
+                        isDeleting = true;
+                        type();
+                    }, 1000); // Delay before backspacing starts
+                }
+            } else {
+                // Backspacing phase
+                if (element.children.length > 0) {
+                    element.removeChild(element.lastChild); // Remove the last letter
+                    setTimeout(type, 60); // Backspacing speed (faster than typing)
+                } else {
+                    // Move to the next text
+                    isDeleting = false;
+                    index = 0;
+                    textIndex = (textIndex + 1) % texts.length; // Cycle through texts
+
+                    // Delay before typing the next text
+                    setTimeout(() => {
+                        type();
+                    }, 500); // Delay before typing the next text
+                }
+            }
+        };
+
+        // Add blinking cursor
+        element.classList.add("cursor-blink");
+
+        // Start the typewriter effect
+        setTimeout(type, 500); // Initial delay before typing starts
+    });
 });
