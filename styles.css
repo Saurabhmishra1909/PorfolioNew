@@ -264,22 +264,7 @@ small {
 /*******************
 		HEADER
 *************************/
-/* Particles Background */
-#particles-js {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	z-index: -1; /* Ensure it stays behind other content */
-	background: #1a1a1a; /* Dark background color */
-}
 
-/* Ensure content is above the particles */
-main, .footer {
-	position: relative;
-	z-index: 1;
-}
 
 /* Navbar */
 
@@ -915,7 +900,8 @@ main, .footer {
 
 	.nav {
 		position: relative;
-		z-index: 1;
+		background-color: var(--secondary-clr);
+		z-index: 100;
 	}
 
 	.nav-list,
@@ -936,6 +922,7 @@ main, .footer {
 
 	.social-nav {
 		opacity: 0;
+		background: var(--secondary-clr); 
 		pointer-events: none;
 		position: absolute;
 		top: 175px;
