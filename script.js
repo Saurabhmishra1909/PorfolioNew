@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const navList = document.querySelector(".nav-list");
     const socials = document.querySelector(".social-nav");
     const navLinks = document.querySelectorAll(".nav-links");
-	
 
     if (hamburger && navList && socials) {
         const toggleMobileMenu = () => {
@@ -36,8 +35,14 @@ document.addEventListener("DOMContentLoaded", function () {
         AOS.init();
     }
 
-    // ✅ Typing Effect for Project Titles with Colorful Letters
-    const typewriterElements = document.querySelectorAll(".typewriter");
+    // ✅ Typing Effect for Multiple Elements
+    initializeTypewriter(".typewriter", 120, 60, 500,0.1); // Fast typing for .typewriter
+    initializeTypewriter(".typewriter-2", 170, 100, 200,0.1); // Slower typing for .typewriter-2
+});
+
+// Reusable Typing Effect Function
+function initializeTypewriter(selector, typingSpeed, backspaceSpeed, delayBeforeTyping,colorFrequency) {
+    const typewriterElements = document.querySelectorAll(selector);
 
     typewriterElements.forEach((element) => {
         const texts = element.getAttribute("data-texts")?.split(",") || []; // Array of texts
@@ -52,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const letters = "0123456789ABCDEF";
             let color = "#";
             for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 22)];
+                color += letters[Math.floor(Math.random() * 16)]; // Valid hex color
             }
             return color;
         };
@@ -72,11 +77,12 @@ document.addEventListener("DOMContentLoaded", function () {
                     } else {
                         span.textContent = letter;
                     }
-
-                    span.style.color = getRandomColor(); // Assign a random color
+					if (Math.random() < colorFrequency) {
+                        span.style.color = getRandomColor(); // Assign a random color
+                    }
                     element.appendChild(span); // Append the colored letter
                     index++;
-                    setTimeout(type, 120); // Typing speed
+                    setTimeout(type, typingSpeed); // Typing speed
                 } else {
                     // Switch to backspacing after a delay
                     setTimeout(() => {
@@ -88,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 // Backspacing phase
                 if (element.children.length > 0) {
                     element.removeChild(element.lastChild); // Remove the last letter
-                    setTimeout(type, 60); // Backspacing speed (faster than typing)
+                    setTimeout(type, backspaceSpeed); // Backspacing speed
                 } else {
                     // Move to the next text
                     isDeleting = false;
@@ -107,6 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
         element.classList.add("cursor-blink");
 
         // Start the typewriter effect
-        setTimeout(type, 500); // Initial delay before typing starts
+        setTimeout(type, delayBeforeTyping); // Initial delay before typing starts
     });
-});
+}

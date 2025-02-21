@@ -361,6 +361,24 @@ small {
 .typewriter span {
     display: inline-block; /* Ensure each letter is treated as a block */
 }
+.t{
+	font-size: 2rem; 
+	font-family: monospace; /* Ensure monospace font for typing effect */
+	margin-top: 5%;
+	text-align: center;
+}
+.typewriter-2 {
+    font-size: 2rem; /* Set text size */
+	margin-top:20%;
+    display: inline; /* Change to block for centering */
+    text-align: center; /* Center text inside the element */
+    animation: typing 1.5s steps(40, end), blink 0.7s step-end infinite;
+    font-family: monospace; /* Ensure monospace font for typing effect */
+    overflow: hidden; /* Hide overflow */
+    border-right: 2px solid black; /* Cursor */
+    width: 120%; /* Set a fixed width */
+    max-width: 1500px; /* Adjust based on your longest text */
+}
 
 .cursor-blink {
     animation: blink 0.7s steps(2, start) infinite;
@@ -396,16 +414,18 @@ small {
 }
 
 .hero img {
-	margin-top: 2rem; /* Add space between text and image */
-    max-width: 450px; /* Limit the maximum width */
+	filter: brightness(0.3);
+	margin-top: 5rem; /* Add space between text and image */
+	height: 20%; /* Set the height */
+    max-width: 400px; /* Limit the maximum width */
     width: 100%; /* Make it responsive */
     height: auto; /* Maintain aspect ratio */
-    border-radius: 90%; /* Make the image circular */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
-    box-shadow: 0 0 20px rgba(196, 208, 34, 0.8), 0 0 30px rgba(213, 213, 27, 0.6), 0 0 40px rgba(255, 255, 255, 0.4); /* Glowing border effect */
-}
-    animation: float 3s ease-in-out infinite; /* Add a floating animation */
+    border-radius: 50%; /* Make the image circular */
+	animation: float 3s ease-in-out infinite; /* Add a floating animation */
     transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effects */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow */
+    box-shadow: 0 0 20px rgba(119, 128, 28, 0.8), 0 0 30px rgba(124, 124, 76, 0.6), 0 0 40px rgba(116, 108, 108, 0.4); /* Glowing border effect */
+    
 }
 
 /* Floating animation */
@@ -515,10 +535,13 @@ small {
 .about-me img {
 	align-self: end;
 	justify-self: end;
-	width: 425px;
+	height: auto;
+	width: 420px;
+	filter: brightness(0.8);
+	margin-right: 4rem;
 	border-radius: 10%;
 	box-shadow: 0 0 20px rgba(46, 44, 44, 0.8), 0 0 30px rgba(51, 46, 46, 0.6), 0 0 40px rgba(255, 255, 255, 0.4); /* Glowing border effect */
-    border-color: rgba(47, 44, 44, 0.8); /* Optional: Lighten the border color on hover */
+    border-color: rgba(101, 108, 51, 0.8); /* Optional: Lighten the border color on hover */
 }
 	/* filter: brightness(0.8); */
 }
