@@ -1025,6 +1025,20 @@ small {
 			width: 40%; /* Reduce size for smaller screens */
 			max-width: 300px; /* Keep it manageable */
 	}
+	@media (max-width: 768px) {
+		.t {
+			font-size: 1.5rem; /* Decrease font size for tablets */
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.t {
+			font-size: 1.2rem; /* Even smaller font for mobile */
+		}
+		.typewriter-2 {
+			font-size: 1.3rem;
+		}
+	}
 	.about-me img {
 		display: block;
 			margin: 2rem auto; /* Center it */
