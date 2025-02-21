@@ -1020,8 +1020,18 @@ small {
 	}
 
 	.hero img {
-		display: none;
+			display: block;
+			margin: 2rem auto; /* Center it */
+			width: 40%; /* Reduce size for smaller screens */
+			max-width: 300px; /* Keep it manageable */
 	}
+	.about-me img {
+		display: block;
+			margin: 2rem auto; /* Center it */
+			width: 70%; /* Reduce size for smaller screens */
+			max-width: 300px; /* Keep it manageable */
+	}
+	
 
 	.my-skills ul {
 		grid-template-columns: repeat(2, 1fr);
