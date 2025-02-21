@@ -1026,7 +1026,7 @@ small {
 			max-width: 300px; /* Keep it manageable */
 	}
 	.typewriter-2 {
-		font-size: 1.1rem;
+		font-size: 1.4rem;
 	}
 	@media (max-width: 768px) {
 		.t {
@@ -1044,7 +1044,7 @@ small {
 	}
 	.about-me img {
 		    display: block;
-			margin-left: 11px;  /* Center it */
+			margin-left: 9px;  /* Center it */
 			width: 70%; /* Reduce size for smaller screens */
 			max-width: 300px; /* Keep it manageable */
 	}
