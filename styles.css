@@ -591,15 +591,17 @@ small {
 }
 
 .project-img {
-	transition: opactiy 300ms ease-in-out;
-	position: relative;
-	display: inline-block;
-	/* height: 100%; */
-	border-radius: 0.5rem;
+    transition: transform 300ms ease-in-out, box-shadow 300ms ease-in-out;
+    position: relative;
+    display: inline-block;
+    border-radius: 0.5rem;
+	border: 2px solid var(--accent-clr);
+    overflow: hidden; /* Ensure the border-radius works */
 }
 
 .project-img:hover {
-	opacity: 0.9;
+    transform: scale(1.05); /* Slightly enlarge the image */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Add a shadow */
 }
 
 .project:nth-child(even) a {
