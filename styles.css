@@ -1044,7 +1044,7 @@ small {
 	}
 	.about-me img {
 		    display: block;
-			margin-right: 10%;  /* Center it */
+			margin-right: 12%;  /* Center it */
 			width: 70%; /* Reduce size for smaller screens */
 			max-width: 300px; /* Keep it manageable */
 	}
