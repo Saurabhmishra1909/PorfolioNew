@@ -562,13 +562,105 @@ small {
 	margin-block-start: var(--section-mt);
 	padding: 4rem 1rem;
 }
-
-.my-skills ul {
-	padding-block-start: 5rem;
-	display: grid;
-	grid-template-columns: repeat(4, 1fr);
-	gap: 3.2rem 1rem;
+.skill-category {
+    margin-top: 20px;
+    border: 1px solid #444;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #222;
 }
+
+/* Skill category header (clickable) */
+.skill-header {
+    font-size: 1.3rem;
+    color: #f4c542;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    background: #1e1e1e;
+}
+
+.skill-header i {
+    transition: transform 0.3s ease;
+}
+
+/* Rotating arrow when expanded */
+.skill-category.active .skill-header i {
+    transform: rotate(180deg);
+}
+
+/* Skill content (hidden initially) */
+.skill-content {
+    display: none;
+    padding: 15px;
+    background: #1a1a1a;
+    border-top: 1px solid #444;
+}
+
+/* Skill Card */
+.skill-card {
+    background: #333;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.skill-card i {
+    font-size: 1.5rem;
+    color: #f4c542;
+}
+
+/* Usage text */
+.usage {
+    font-size: 0.9rem;
+    color: #bbb;
+    margin-left: 10px;
+}
+
+/* Animations */
+.skill-content {
+    transition: max-height 0.4s ease-in-out, opacity 0.3s ease;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.skill-category.active .skill-content {
+    max-height: 500px;
+    opacity: 1;
+}
+
+/* Skill Category Box */
+/* Skill Category Box */
+.skill-category {
+    position: relative;
+    background: #111;
+    padding: 15px;
+    border-radius: 20px;
+    margin: 5px;
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover Effect */
+.skill-category:hover {
+    transform: scale(1.05); /* Slightly enlarges the box */
+    box-shadow: 0 0 15px rgba(255, 217, 0, 0.46), 
+                0 0 25px rgba(255, 166, 0, 0.35), 
+                0 0 35px rgba(255, 140, 0, 0.08); /* Glowing effect */
+}
+
+
+
+
 
 /*******************
 		PROJECTS SECTION

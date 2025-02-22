@@ -9,6 +9,37 @@ document.addEventListener("DOMContentLoaded", function () {
     const socials = document.querySelector(".social-nav");
     const navLinks = document.querySelectorAll(".nav-links");
 
+    const categories = document.querySelectorAll(".skill-category");
+
+    // ✅ Expand/Collapse Skill Sections
+    const skillHeaders = document.querySelectorAll(".skill-header");
+
+    skillHeaders.forEach(header => {
+        header.addEventListener("click", function () {
+            const category = this.parentElement;
+            const content = category.querySelector(".skill-content");
+
+            // Toggle active class
+            category.classList.toggle("active");
+
+            // Collapse all other categories
+            document.querySelectorAll(".skill-category").forEach(otherCategory => {
+                if (otherCategory !== category) {
+                    otherCategory.classList.remove("active");
+                    otherCategory.querySelector(".skill-content").style.display = "none";
+                }
+            });
+
+            // Toggle visibility
+            if (category.classList.contains("active")) {
+                content.style.display = "block";
+            } else {
+                content.style.display = "none";
+            }
+        });
+    });
+
+    // ✅ Mobile Menu Toggle
     if (hamburger && navList && socials) {
         const toggleMobileMenu = () => {
             document.body.classList.toggle("open");
@@ -36,83 +67,60 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ✅ Typing Effect for Multiple Elements
-    initializeTypewriter(".typewriter", 120, 60, 500,0.1); // Fast typing for .typewriter
-    initializeTypewriter(".typewriter-2", 170, 100, 200,0.1); // Slower typing for .typewriter-2
+    initializeTypewriter(".typewriter", 120, 60, 500, 0.1); // Fast typing for .typewriter
+    initializeTypewriter(".typewriter-2", 170, 100, 200, 0.1); // Slower typing for .typewriter-2
 });
 
-// Reusable Typing Effect Function
-function initializeTypewriter(selector, typingSpeed, backspaceSpeed, delayBeforeTyping,colorFrequency) {
+// ✅ Typing Effect Function
+function initializeTypewriter(selector, typingSpeed, backspaceSpeed, delayBeforeTyping, colorFrequency) {
     const typewriterElements = document.querySelectorAll(selector);
 
     typewriterElements.forEach((element) => {
-        const texts = element.getAttribute("data-texts")?.split(",") || []; // Array of texts
+        const texts = element.getAttribute("data-texts")?.split(",").map(text => text.trim()) || [];
         if (texts.length === 0) return; // Exit if no texts are provided
 
-        let textIndex = 0; // Index of the current text
-        let index = 0; // Index of the current character
+        let textIndex = 0;
+        let index = 0;
         let isDeleting = false;
 
         // Function to generate a random color
         const getRandomColor = () => {
-            const letters = "0123456789ABCDEF";
-            let color = "#";
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)]; // Valid hex color
-            }
-            return color;
+            return `#${Math.floor(Math.random() * 16777215).toString(16)}`;
         };
 
         const type = () => {
-            const currentText = element.textContent;
-
             if (!isDeleting) {
-                // Typing phase
                 if (index < texts[textIndex].length) {
                     const letter = texts[textIndex].charAt(index);
                     const span = document.createElement("span");
 
-                    // Handle spaces by replacing them with a non-breaking space
-                    if (letter === " ") {
-                        span.innerHTML = "&nbsp;"; // Use innerHTML for non-breaking space
-                    } else {
-                        span.textContent = letter;
+                    span.textContent = letter === " " ? "\u00A0" : letter; // Handle spaces
+                    if (Math.random() < colorFrequency) {
+                        span.style.color = getRandomColor();
                     }
-					if (Math.random() < colorFrequency) {
-                        span.style.color = getRandomColor(); // Assign a random color
-                    }
-                    element.appendChild(span); // Append the colored letter
+                    element.appendChild(span);
                     index++;
-                    setTimeout(type, typingSpeed); // Typing speed
+                    setTimeout(type, typingSpeed);
                 } else {
-                    // Switch to backspacing after a delay
                     setTimeout(() => {
                         isDeleting = true;
                         type();
-                    }, 1000); // Delay before backspacing starts
+                    }, 1000); // Pause before deleting
                 }
             } else {
-                // Backspacing phase
                 if (element.children.length > 0) {
-                    element.removeChild(element.lastChild); // Remove the last letter
-                    setTimeout(type, backspaceSpeed); // Backspacing speed
+                    element.removeChild(element.lastChild);
+                    setTimeout(type, backspaceSpeed);
                 } else {
-                    // Move to the next text
                     isDeleting = false;
                     index = 0;
-                    textIndex = (textIndex + 1) % texts.length; // Cycle through texts
-
-                    // Delay before typing the next text
-                    setTimeout(() => {
-                        type();
-                    }, 500); // Delay before typing the next text
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(type, 500); // Pause before typing next text
                 }
             }
         };
 
-        // Add blinking cursor
-        element.classList.add("cursor-blink");
-
-        // Start the typewriter effect
-        setTimeout(type, delayBeforeTyping); // Initial delay before typing starts
+        // Start typing after delay
+        setTimeout(type, delayBeforeTyping);
     });
 }
