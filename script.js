@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // ✅ Expand/Collapse Skill Sections
     const skillHeaders = document.querySelectorAll(".skill-header");
 
+    
+
     skillHeaders.forEach(header => {
         header.addEventListener("click", function () {
             const category = this.parentElement;

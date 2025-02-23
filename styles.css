@@ -352,10 +352,12 @@ small {
 
 
 .typewriter { 
+    font-size: 46px;
     font-family: monospace;
+    border-right: 2px solid black;
+    padding-right: 5px;
     white-space: nowrap;
     overflow: hidden;
-    border-right: 2px solid black; /* Cursor */
 }
 
 .typewriter span {
@@ -670,15 +672,6 @@ small {
 	padding: 4rem 1rem;
 }
 
-.typewriter {
-	font-size: 46px;
-    font-family: monospace;
-    border-right: 2px solid black;
-    padding-right: 5px;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
 @keyframes blink {
     50% {
         border-color: transparent;
@@ -873,7 +866,7 @@ small {
 	height: 200%;
 	background: radial-gradient(circle, rgba(255, 255, 255, 0.05), transparent); /* Subtle radial gradient */
 	transform: rotate(45deg);
-	animation: rotateGradient 70s linear infinite;
+	animation: rotateGradient 40s linear infinite;
 }
 
 @keyframes rotateGradient {
